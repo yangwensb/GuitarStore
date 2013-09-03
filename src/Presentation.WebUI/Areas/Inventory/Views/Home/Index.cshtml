@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+@section header{
+    <link href="~/Content/Areas/Inventory/InventoryList.cshtml.css" rel="stylesheet" />
+}
+
+@Html.Partial("InventoryList")
+
+@section scripts
+{
+<script src="~/scripts/knockout-2.2.0.js"></script>
+<script src="~/scripts/knockout.mapping-latest.js"></script>
+<script src="~/scripts/areas/inventory/inventorylist.cshtml.js"></script>
+}

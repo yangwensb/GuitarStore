@@ -1,0 +1,25 @@
+install-package nhibernate Infrastructure.Data.MainBoundedContext
+install-package nhibernate Infrastructure.Data.Seedwork
+install-package fluentnhibernate Infrastructure.Data.MainBoundedContext
+install-package fluentnhibernate Infrastructure.Data.Seedwork
+install-package ninject Infrastructure.Data.MainBoundedContext
+install-package ninject Infrastructure.Data.Seedwork
+install-package log4net Infrustructure.Crosscutting
+install-package nunit Infrastructure.Data.MainBoundedContext.Tests
+install-package moq Infrastructure.Data.MainBoundedContext.Tests
+install-package ninject Infrastructure.Data.MainBoundedContext.Tests
+install-package ninject Infrustructure.Crosscutting
+install-package ninject Application.MainBoundedContext
+install-package ninject Application.MainBoundedContext.Tests
+install-package moq Application.MainBoundedContext.Tests
+install-package automapper Infrastructure.Crosscutting.Framework
+install-package automapper Application.MainBoundedContext.DTO
+install-package automapper Application.MainBoundedContext
+install-package automapper Application.MainBoundedContext.Tests
+install-package ninject Presentation.WebUI
+install-package ninject.web.common Presentation.WebUI
+install-package knockout.mapping  Presentation.WebUI
+
+
+
+

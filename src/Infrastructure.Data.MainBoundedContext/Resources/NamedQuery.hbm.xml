@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+  <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+    <sql-query name="InventoryList">
+      <![CDATA[
+          SELECT 
+               Id
+              ,Type
+              ,Builder
+              ,Model
+              ,QOH
+              ,Cost
+              ,Price
+              ,Received
+            FROM StoreViews.GuitarInventory
+            WHERE CONTAINS(Composed, :keywords)
+      ]]> 
+    </sql-query>
+    <sql-query name="InventoryListCount">
+      <![CDATA[
+          SELECT COUNT(*)
+            FROM StoreViews.GuitarInventory
+            WHERE CONTAINS(Composed, :keywords)
+      ]]> 
+    </sql-query>
+  </hibernate-mapping>
