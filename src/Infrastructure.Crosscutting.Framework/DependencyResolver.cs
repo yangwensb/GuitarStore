@@ -1,4 +1,6 @@
 ﻿
+using Infrastructure.Crosscutting.Framework.Logging;
+using Infrastructure.Crosscutting.Logging;
 using log4net;
 using Ninject;
 using Ninject.Modules;
@@ -8,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrustructure.Crosscutting.Configuration
+namespace Infrustructure.Crosscutting.Framework
 {
     public class DependencyResolver : NinjectModule
     {
@@ -17,9 +19,8 @@ namespace Infrustructure.Crosscutting.Configuration
         ///</summary>
         private void ConfigureLog4net(IKernel container)
         {
-            log4net.Config.XmlConfigurator.Configure();
-            var logger = LogManager.GetLogger("Infrastructure.Data");
-            container.Bind<ILog>().ToConstant(logger);
+            var factory = new Log4netFactory();
+            LoggerFactory.SetCurrent(factory);
         }
 
         public override void Load()

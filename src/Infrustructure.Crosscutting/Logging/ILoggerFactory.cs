@@ -16,5 +16,7 @@ namespace Infrastructure.Crosscutting.Logging
         /// </summary>
         /// <returns>The ILog created</returns>
         ILogger Create();
+
+        string LoggerName { get; set; }
     }
 }

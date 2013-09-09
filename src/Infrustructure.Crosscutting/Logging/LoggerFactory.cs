@@ -9,6 +9,7 @@ namespace Infrastructure.Crosscutting.Logging
         #region Members
 
         static ILoggerFactory _currentLogFactory = null;
+        static ILogger _currentLogger = null;
 
         #endregion
 
@@ -29,7 +30,7 @@ namespace Infrastructure.Crosscutting.Logging
         /// <returns>Created ILog</returns>
         public static ILogger CreateLog()
         {
-            return (_currentLogFactory != null) ? _currentLogFactory.Create() : null;
+            return _currentLogger ?? _currentLogFactory.Create();
         }
 
         #endregion
