@@ -304,6 +304,10 @@
       <Project>{e5514b93-7ca5-4356-8036-3d8da4cb9242}</Project>
       <Name>Application.MainBoundedContext</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Crosscutting.Framework\Infrastructure.Crosscutting.Framework.csproj">
+      <Project>{1ea6f8cc-cc3b-4365-ac58-827e90a612a3}</Project>
+      <Name>Infrastructure.Crosscutting.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Data.MainBoundedContext\Infrastructure.Data.MainBoundedContext.csproj">
       <Project>{85d14763-364f-4f43-a946-237f2ed8dba7}</Project>
       <Name>Infrastructure.Data.MainBoundedContext</Name>

@@ -15,7 +15,7 @@ namespace Infrastructure.Data.MainBoundedContext.StoreModule.Repositories
 
         public MainBCUnitOfWork()
         {
-            base.Initialize(typeof(MainBCUnitOfWork).Assembly);
+            NHibernateBase.Initialize(typeof(MainBCUnitOfWork).Assembly);
         }
 
         #region IQueryableUnitOfWork

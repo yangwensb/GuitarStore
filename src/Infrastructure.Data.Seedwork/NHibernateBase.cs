@@ -12,6 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Infrustructure.Crosscutting.Logging;
 
 namespace Infrastructure.Data.Seedwork
 {
@@ -41,7 +42,8 @@ namespace Infrastructure.Data.Seedwork
             return Configuration;
         }
 
-        public void Initialize(Assembly assembly)
+        [Diagnostic]
+        public static void Initialize(Assembly assembly)
         {
             Configuration = ConfigureNHibernate(assembly);
             SessionFactory = FluentNHibernate
