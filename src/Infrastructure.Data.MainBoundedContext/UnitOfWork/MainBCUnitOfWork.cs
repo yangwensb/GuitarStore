@@ -12,10 +12,9 @@ namespace Infrastructure.Data.MainBoundedContext.StoreModule.Repositories
 {
     public class MainBCUnitOfWork : NHibernateBase, IQueryableUnitOfWork
     {
-
-        public MainBCUnitOfWork()
+        public MainBCUnitOfWork(ISessionFactory sessionFactory)
+            : base(sessionFactory)
         {
-            NHibernateBase.Initialize(typeof(MainBCUnitOfWork).Assembly);
         }
 
         #region IQueryableUnitOfWork

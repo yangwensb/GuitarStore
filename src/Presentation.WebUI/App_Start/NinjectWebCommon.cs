@@ -55,8 +55,9 @@ namespace Presentation.WebUI.App_Start
         {
             System.Web.Mvc.DependencyResolver.SetResolver(new DependencyResolver(kernel));
             kernel.Load(new Application.MainBoundedContext.DependencyResolver(),
-                        new Infrastructure.Data.MainBoundedContext.DependencyResolver(),
-                        new Infrustructure.Crosscutting.Framework.DependencyResolver());
-        }        
+                        new Infrustructure.Crosscutting.Framework.DependencyResolver(),
+                        new Infrastructure.Data.MainBoundedContext.DependencyResolver()
+                        );
+        }       
     }
 }

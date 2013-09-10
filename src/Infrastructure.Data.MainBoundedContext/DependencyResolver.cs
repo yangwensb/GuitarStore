@@ -26,6 +26,14 @@ namespace Infrastructure.Data.MainBoundedContext
         {
             Bind<IQueryableUnitOfWork>().To<MainBCUnitOfWork>();
             Bind<IInventoryRepository>().To<InventoryRepository>();
+
+            ConfigureNHibernate(this.Kernel);
+        }
+
+        private void ConfigureNHibernate(IKernel container)
+        {
+            var sessionFactory = NHibernateConfigurator.Configure(typeof(MainBCUnitOfWork).Assembly);
+            container.Bind<ISessionFactory>().ToConstant(sessionFactory);
         }
     }
 }

@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryTimestamp.cs" />
+    <Compile Include="NHibernateConfigurator.cs" />
     <Compile Include="MsSql2008DialectFTS.cs" />
     <Compile Include="IQueryableUnitOfWork.cs" />
     <Compile Include="ISql.cs" />
