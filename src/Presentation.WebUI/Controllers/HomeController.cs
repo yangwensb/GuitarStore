@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentation.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,7 @@ namespace Presentation.WebUI.Controllers
     {
         //
         // GET: /Home/
-
+        [DiagnosticFilter]
         public ActionResult Index()
         {
             return View();

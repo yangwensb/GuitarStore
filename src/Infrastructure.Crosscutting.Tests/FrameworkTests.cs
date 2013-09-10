@@ -2,6 +2,7 @@
 using Ninject;
 using Infrastructure.Crosscutting.Logging;
 using Infrustructure.Crosscutting.Framework;
+using System.Collections.Generic;
 
 namespace Infrastructure.Crosscutting.Tests
 {
@@ -64,9 +65,16 @@ namespace Infrastructure.Crosscutting.Tests
         public void CanInstantiateDefaultLoggerInstance()
         {
             // Arange
+            Dictionary<string, object> map = new Dictionary<string, object>();
+            map.Add("orgId", 75);
+            map.Add("requestId", 2345);
+            map.Add("someName", "Oops");
+            string message = "Message with parameters: {0}, {1}, {2}";
+            object[] arr = new object[3];
+            map.Values.CopyTo(arr,0);
 
             // Act
-            LoggerFactory.CreateLog().Debug("Message to be saved in the default log file.");
+            LoggerFactory.CreateLog().Debug(message,arr);
 
             // Assert
         }

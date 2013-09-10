@@ -189,6 +189,7 @@
     <Compile Include="Areas\Inventory\InventoryAreaRegistration.cs" />
     <Compile Include="Areas\Inventory\Models\InventoryListModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\DiagnosticFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -274,7 +275,9 @@
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -311,6 +314,14 @@
     <ProjectReference Include="..\Infrastructure.Data.MainBoundedContext\Infrastructure.Data.MainBoundedContext.csproj">
       <Project>{85d14763-364f-4f43-a946-237f2ed8dba7}</Project>
       <Name>Infrastructure.Data.MainBoundedContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrustructure.Crosscutting\Infrustructure.Crosscutting.csproj">
+      <Project>{7c932db8-b9c0-4f52-b1cc-e273b3c3755c}</Project>
+      <Name>Infrustructure.Crosscutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Presentation.Seedwork\Presentation.Seedwork.csproj">
+      <Project>{aa1bf487-a11a-4679-bf2a-9d084fc0fd0f}</Project>
+      <Name>Presentation.Seedwork</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
