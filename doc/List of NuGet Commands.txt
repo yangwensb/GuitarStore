@@ -19,6 +19,10 @@ install-package automapper Application.MainBoundedContext.Tests
 install-package ninject Presentation.WebUI
 install-package ninject.web.common Presentation.WebUI
 install-package knockout.mapping  Presentation.WebUI
+install-package log4net Infrastructure.Crosscutting.Framework
+install-package log4net Infrastructure.Crosscutting.Tests
+install-package ninject Infrastructure.Crosscutting.Tests
+install-package ninject Infrastructure.Crosscutting.Framework
 
 
 
