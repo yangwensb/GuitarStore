@@ -1,46 +1,46 @@
-﻿<div id="container">
+﻿<div id="container" ng-app="inventory" ng-controller="inventoryListCtrl">
     <div id="top">
         <h2>Inventory List</h2>
-        <p><span id="itemsFound" data-bind="text: NumberOfResults"></span> Records Found</p>
-        <p>Current Page #<span id="currentPage" data-bind="text: CurrentPage"></span></p>
-<p>
-            <input id="filterKeywords" type="text" /> 
-            <input id="getData" onclick="go()" type="button" value="Go" />
+        <p><span ng-bind="inventoryListModel.NumberOfResults"></span> Records Found</p>
+        <p>Current Page #<span>{{currentPage + 1}}</span></p>
+        <p>
+            <input type="text" ng-model="filterKeywords" />            
+            <input ng-click="go()" type="button" value="Go" />
         </p>
     </div>
-    <table id="dataGrid" class="grid" data-bind="template: {name: 'inventoryListTemplate', foreach: InventoryList}">
+    <table id="dataGrid" class="grid">
         <thead>
             <tr>
-                <th><a href="#Type" onclick="sort('Type')">Type</a></th>
-                <th><a href="#Builder" onclick="sort('Builder')">Builder</a></th>
-                <th><a href="#Model" onclick="sort('Model')">Model</a></th>
-                <th><a href="#QOH" onclick="sort('QOH')">QOH</a></th>
-                <th><a href="#Cost" onclick="sort('Cost')">Cost</a></th>
-                <th><a href="#Price" onclick="sort('Price')">Price</a></th>
-                <th><a href="#Received" onclick="sort('Received')">Received</a></th>
+                <th><a href="#" ng-click="sort('Type')">Type</a></th>
+                <th><a href="#" ng-click="sort('Builder')">Builder</a></th>
+                <th><a href="#" ng-click="sort('Model')">Model</a></th>
+                <th><a href="#" ng-click="sort('QOH')">QOH</a></th>
+                <th><a href="#" ng-click="sort('Cost')">Cost</a></th>
+                <th><a href="#" ng-click="sort('Price')">Price</a></th>
+                <th><a href="#" ng-click="sort('Received')">Received</a></th>
             </tr>
         </thead>
+        <tbody>
+            <tr ng-repeat="item in inventoryListModel.InventoryList">
+                <td>{{item.Type}}</td>
+                <td>{{item.Builder}}</td>
+                <td>{{item.Model}}</td>
+                <td>{{item.QOH}}</td>
+                <td>{{item.Cost}}</td>
+                <td>{{item.Price}}</td>
+                <td>{{item.Received | msdate}}</td>
+            </tr>
+        </tbody>
         <tfoot>
             <tr>
                 <td colspan="7" class="pager">
-                    <span id="back" onclick="move(-1)">&lt; Back</span>
-                    <span id="next" onclick="move(1)">Next &gt;</span>
+                    <span ng-hide="backButtonHidden" ng-click="move(-1)">&lt; Back</span>
+                    <span ng-hide="nextButtonHidden" ng-click="move(1)">Next &gt;</span>
                 </td>
             </tr>
         </tfoot>
     </table>
-    <div id="loadingDiv">Loading...</div>
 
-    <script id="inventoryListTemplate" type="text/html">
-        <tr>
-            <td data-bind="text: Type"></td>
-            <td data-bind="text: Builder"></td>
-            <td data-bind="text: Model"></td>
-            <td data-bind="text: QOH"></td>
-            <td data-bind="text: Cost"></td>
-            <td data-bind="text: Price"></td>
-            <td data-bind="text: Received"></td>
-        </tr>
-    </script>
+    <div ng-hide="loadingDivHidden">Loading...</div>
 
 </div>

@@ -257,7 +257,11 @@
     <Content Include="Areas\Inventory\Views\Home\Index.cshtml" />
     <Content Include="Areas\Inventory\Views\Home\InventoryList.cshtml" />
     <None Include="Scripts\vendor\jquery\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\Areas\Inventory\InventoryList.cshtml.js" />
+    <Content Include="Scripts\app\areas\inventory\inventoryModule.js" />
+    <Content Include="Scripts\app\areas\inventory\controller\inventoryListCtrl.js" />
+    <Content Include="Scripts\app\areas\inventory\directives.js" />
+    <Content Include="Scripts\app\areas\inventory\filters.js" />
+    <Content Include="Scripts\app\areas\inventory\services.js" />
     <Content Include="Scripts\vendor\jquery\jquery-1.8.2.js" />
     <Content Include="Scripts\vendor\jquery\jquery-1.8.2.min.js" />
     <None Include="Scripts\vendor\jquery\jquery.validate-vsdoc.js" />
@@ -294,6 +298,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Inventory\Views\Shared\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\test\spec\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

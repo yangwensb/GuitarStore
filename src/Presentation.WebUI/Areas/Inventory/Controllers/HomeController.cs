@@ -32,7 +32,7 @@ namespace Presentation.WebUI.Areas.Inventory.Controllers
 
         [AsyncTimeout(2500)]
         [HandleError(ExceptionType = typeof(TaskCanceledException), View = "AjaxTimedOut")]
-        public async Task<ActionResult> GetInventoryList(int? pageIndex, string sortExpression, string filterKeywords)
+        public async Task<ActionResult> GetInventoryList(int? pageIndex, string sortExpression, string filterKeywords)        
         {
             pageIndex = pageIndex ?? 0;
             var result = await GetInventoryListModel(pageIndex.Value, sortExpression, filterKeywords);
