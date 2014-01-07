@@ -1,4 +1,6 @@
-﻿using Domain.MainBoundedContext.Aggregates.InventoryAgg;
+﻿using System.Data;
+using System.Diagnostics.Contracts;
+using Domain.MainBoundedContext.Aggregates.InventoryAgg;
 using Infrastructure.Data.Seedwork;
 using NHibernate;
 using System;
@@ -33,7 +35,7 @@ namespace Infrastructure.Data.MainBoundedContext.StoreModule.Repositories
         /// <returns>Enumerable collection of inventory</returns>
         public override IEnumerable<Inventory> GetAll()
         {
-            var currentUnitOfWork = this.UnitOfWork as IQueryableUnitOfWork;
+            var currentUnitOfWork = UnitOfWork as IQueryableUnitOfWork;
 
             var session = currentUnitOfWork.GetSession();
 
@@ -61,34 +63,37 @@ namespace Infrastructure.Data.MainBoundedContext.StoreModule.Repositories
         public System.Collections.IList GetInventoryList(int pageIndex, int pageCount, out int total, string fieldName = null,
               bool ascending = true, string keywords = null, bool getTotal = true)
         {
-            var session = (base.UnitOfWork as IQueryableUnitOfWork).GetStatelessSession();
+            var queryableUnitOfWork = UnitOfWork as IQueryableUnitOfWork;
+
+            Contract.Assert(queryableUnitOfWork != null, "UoW is not initialized for InventoryRepository");
+
+            var session = queryableUnitOfWork.GetStatelessSession();
             total = 0;
 
             var extention = keywords == null ? " OR 1=1" : "";
             extention += " ORDER BY " + (fieldName == null ? "Id ASC" :
-                                        String.Format("{0} {1}", fieldName, ascending ? "ASC" : "DESC"));
+                String.Format("{0} {1}", fieldName, @ascending ? "ASC" : "DESC"));
 
             keywords = keywords == null ? null : String.Format(" \"{0}*\" ",keywords);
 
-            using (ITransaction transaction = session.BeginTransaction())
+            using (var transaction = session.BeginTransaction())
             {
                 var query = session.CreateSQLQuery(
-                                session.GetNamedQuery("InventoryList")
-                                .QueryString + extention
-                                )
-                            .SetParameter("keywords", keywords ?? "*")
-                            .SetFirstResult(pageIndex * pageCount)
-                            .SetMaxResults(pageCount);
+                    session.GetNamedQuery("InventoryList")
+                        .QueryString + extention
+                    )
+                    .SetParameter("keywords", keywords ?? "*")
+                    .SetFirstResult(pageIndex * pageCount)
+                    .SetMaxResults(pageCount);
 
-                if (getTotal)
-                {
-                    var count = session.CreateSQLQuery(
-                                    session.GetNamedQuery("InventoryListCount")
-                                    .QueryString + (keywords == null ? " OR 1=1" : "")
-                                    )
-                                .SetParameter("keywords", keywords ?? "*");
-                    total = count.UniqueResult<int>();
-                }
+                if (!getTotal) return query.List();
+
+                var count = session.CreateSQLQuery(
+                    session.GetNamedQuery("InventoryListCount")
+                        .QueryString + (keywords == null ? " OR 1=1" : "")
+                    )
+                    .SetParameter("keywords", keywords ?? "*");
+                total = count.UniqueResult<int>();
 
                 return query.List();
             }

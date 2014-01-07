@@ -10,42 +10,28 @@ namespace Infrastructure.Data.Seedwork
         protected ISession _session = null;
         protected IStatelessSession _statelessSession = null;
 
-        public NHibernateBase(ISessionFactory sessionFactory)
+        protected NHibernateBase(ISessionFactory sessionFactory)
         {
             SessionFactory = sessionFactory;
         }
 
         public ISession Session
         { 
-            get
-            {
-                if (_session == null)
-                {
-                    _session = SessionFactory.OpenSession();
-                }
-                return _session;
-            }
+            get { return _session ?? (_session = SessionFactory.OpenSession()); }
         }
 
         public IStatelessSession StatelessSession
         {
-            get
-            {
-                if (_statelessSession == null)
-                { 
-                    _statelessSession = SessionFactory.OpenStatelessSession();
-                }
-                return _statelessSession;
-            }
+            get { return _statelessSession ?? (_statelessSession = SessionFactory.OpenStatelessSession()); }
         }
        
         public IList<T> ExecuteICriteria<T>()
         {
-            using (ITransaction transaction = Session.BeginTransaction())
+            using (var transaction = Session.BeginTransaction())
             {
                 try
                 {
-                    IList<T> result = Session.CreateCriteria(typeof(T)).List<T>();
+                    var result = Session.CreateCriteria(typeof(T)).List<T>();
                     transaction.Commit();
                     return result;
                 }

@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Infrastructure.Crosscutting.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using Infrastructure.Crosscutting.Logging;
-using Infrustructure.Crosscutting.Framework;
 using System.Collections.Generic;
 
 namespace Infrastructure.Crosscutting.Tests

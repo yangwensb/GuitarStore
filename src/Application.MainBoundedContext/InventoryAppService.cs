@@ -28,15 +28,15 @@ namespace Application.MainBoundedContext
         }
         #endregion
 
-        public IEnumerable<InventoryListDTO> GetInventoryList(
+        public IEnumerable<InventoryListDto> GetInventoryList(
                 int pageIndex, int pageCount, out int total, 
-                InventoryListDTO.Filds orderByField = InventoryListDTO.Filds.Id,
+                InventoryListDto.Fields orderByField = InventoryListDto.Fields.Id,
                 bool ascending = true, string keywords = null, bool getTotal = true)
         {
           
             var list = _inventoryRepository.GetInventoryList(pageIndex, pageCount, out total, orderByField.ToString(), ascending, keywords, getTotal);
 
-            return list.ProjectedAsCollection<InventoryListDTO>();
+            return list.ProjectedAsCollection<InventoryListDto>();
         }
     }
 }

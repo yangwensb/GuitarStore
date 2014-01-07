@@ -9,7 +9,7 @@ namespace Presentation.WebUI.Areas.Inventory.Models
 {
     public class InventoryListModel
     {
-        public IEnumerable<InventoryListDTO> InventoryList { get; set; }
+        public IEnumerable<InventoryListDto> InventoryList { get; set; }
         public int NumberOfResults { get; set; }
         public int ItemsPerPage { get; set; }
         public int CurrentPage { get; set; }

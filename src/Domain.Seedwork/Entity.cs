@@ -14,7 +14,7 @@ namespace Domain.Seedwork
         #region Members
 
         int? _requestedHashCode;
-        Guid _Id;
+        Guid _id;
 
         #endregion
 
@@ -27,11 +27,11 @@ namespace Domain.Seedwork
         {
             get
             {
-                return _Id;
+                return _id;
             }
             protected set
             {
-                _Id = value;
+                _id = value;
             }
         }
 
@@ -54,7 +54,7 @@ namespace Domain.Seedwork
         public virtual void GenerateNewIdentity()
         {
             if (IsTransient())
-                this.Id = IdentityGenerator.NewSequentialGuid();
+                Id = IdentityGenerator.NewSequentialGuid();
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Domain.Seedwork
         public virtual void ChangeCurrentIdentity(Guid identity)
         {
             if (identity != Guid.Empty)
-                this.Id = identity;
+                Id = identity;
         }
 
         #endregion
@@ -81,15 +81,14 @@ namespace Domain.Seedwork
             if (obj == null || !(obj is Entity))
                 return false;
 
-            if (Object.ReferenceEquals(this, obj))
+            if (ReferenceEquals(this, obj))
                 return true;
 
-            Entity item = (Entity)obj;
+            var item = (Entity)obj;
 
             if (item.IsTransient() || this.IsTransient())
                 return false;
-            else
-                return item.Id == this.Id;
+            return item.Id == this.Id;
         }
 
         /// <summary>
@@ -98,24 +97,17 @@ namespace Domain.Seedwork
         /// <returns><see cref="M:System.Object.GetHashCode"/></returns>
         public override int GetHashCode()
         {
-            if (!IsTransient())
-            {
-                if (!_requestedHashCode.HasValue)
-                    _requestedHashCode = this.Id.GetHashCode() ^ 31; // XOR for random distribution (http://blogs.msdn.com/b/ericlippert/archive/2011/02/28/guidelines-and-rules-for-gethashcode.aspx)
+            if (IsTransient()) return base.GetHashCode();
 
-                return _requestedHashCode.Value;
-            }
-            else
-                return base.GetHashCode();
+            if (!_requestedHashCode.HasValue)
+                _requestedHashCode = Id.GetHashCode() ^ 31; // XOR for random distribution (http://blogs.msdn.com/b/ericlippert/archive/2011/02/28/guidelines-and-rules-for-gethashcode.aspx)
 
+            return _requestedHashCode.Value;
         }
 
         public static bool operator ==(Entity left, Entity right)
         {
-            if (Object.Equals(left, null))
-                return (Object.Equals(right, null)) ? true : false;
-            else
-                return left.Equals(right);
+            return Equals(left, null) ? (Equals(right, null)) : left.Equals(right);
         }
 
         public static bool operator !=(Entity left, Entity right)

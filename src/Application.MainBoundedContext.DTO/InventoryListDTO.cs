@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Application.MainBoundedContext.DTO
 {
-    public class InventoryListDTO
+    public class InventoryListDto
     {
-        public enum Filds {Id, Type, Builder, Model, QOH, Cost, Price, Received};
+        public enum Fields {Id, Type, Builder, Model, QOH, Cost, Price, Received};
         public virtual Guid Id { get; set; }
         public virtual string Type { get; set; }
         public virtual string Builder { get; set; }

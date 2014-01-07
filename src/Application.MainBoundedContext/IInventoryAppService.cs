@@ -7,7 +7,7 @@ namespace Application.MainBoundedContext
 {
     public interface IInventoryAppService
     {
-        IEnumerable<InventoryListDTO> GetInventoryList(int pageIndex, int pageCount, out int total, 
-            InventoryListDTO.Filds orderByField = InventoryListDTO.Filds.Id, bool ascending = true, string keywords = null, bool getTotal = true);
+        IEnumerable<InventoryListDto> GetInventoryList(int pageIndex, int pageCount, out int total, 
+            InventoryListDto.Fields orderByField = InventoryListDto.Fields.Id, bool ascending = true, string keywords = null, bool getTotal = true);
     }
 }

@@ -80,13 +80,13 @@ namespace Application.MainBoundedContext.Tests
             string keywords = "III";
 
             // Act
-            var page = _service.GetInventoryList(pageIndex, pageCount, out total, InventoryListDTO.Filds.Model, true, keywords);
+            var page = _service.GetInventoryList(pageIndex, pageCount, out total, InventoryListDto.Fields.Model, true, keywords);
 
             // Accert
             Assert.IsTrue(page != null);
             Assert.IsTrue(page.Count() < pageCount);
             Assert.IsFalse(total == 0);
-            Assert.IsInstanceOfType(page.ElementAt(0), typeof(InventoryListDTO));
+            Assert.IsInstanceOfType(page.ElementAt(0), typeof(InventoryListDto));
         }
     }
 }

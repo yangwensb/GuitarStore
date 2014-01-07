@@ -1,10 +1,5 @@
 ﻿using Domain.Seedwork;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.MainBoundedContext.Aggregates.InventoryAgg
 {
@@ -22,6 +17,7 @@ namespace Domain.MainBoundedContext.Aggregates.InventoryAgg
         /// <param name="pageCount"></param>
         /// <param name="total"></param>
         /// <param name="orderByExpression"></param>
+        /// <param name="ascending"></param>
         /// <param name="keywords"></param>
         /// <param name="getTotal"></param>
         /// <returns></returns>

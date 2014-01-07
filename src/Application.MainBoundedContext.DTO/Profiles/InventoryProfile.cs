@@ -13,7 +13,7 @@ namespace Application.MainBoundedContext.DTO.Profiles
         protected override void Configure()
         {
             //object[] => InventoryListDTO
-            var map = Mapper.CreateMap<object[], InventoryListDTO>();
+            var map = Mapper.CreateMap<object[], InventoryListDto>();
             map.ForMember(dto => dto.Id, mc => mc.MapFrom(o => Guid.Parse(Convert.ToString(o[0]))));
             map.ForMember(dto => dto.Type, mc => mc.MapFrom(o => Convert.ToString(o[1])));
             map.ForMember(dto => dto.Builder, mc => mc.MapFrom(o => Convert.ToString(o[2])));
